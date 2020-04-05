@@ -4,13 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index"
+    "start": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
     "nodemon": "^2.0.2"
   }
 }

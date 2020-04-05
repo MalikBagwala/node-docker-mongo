@@ -1,28 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { User } = require("./user/user.model");
+import userRouter from "./user/user.routes";
 const app = express();
-mongoose.connect("mongodb://localhost:27017", {
+mongoose.connect("mongodb://mongo:27017/app", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-app.get("/", async (_, res) => {
-  try {
-    const test = new User({ name: "Malik" });
-
-    // const users = await User.find({ name: "Malik" });
-    // console.log(users);
-    res.json({
-      message: "success",
-      // list: users,
-      data: test,
-    });
-  } catch (err) {
-    return res.status(500).send(err);
-  }
+app.use("/users", userRouter);
+app.get("/", (_, res) => {
+  res.send("Home");
 });
-
 app.listen(8000, () => {
   console.log("Server Running : 8000");
 });
